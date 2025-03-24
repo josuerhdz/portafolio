@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio | Josué Rafael Hernández Chávez</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #1877f2;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* Cambio de idioma */
+        .language-switch {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .language-switch button {
+            background-color: #fff;
+            color: #1877f2;
+            border: 1px solid #1877f2;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .language-switch button:hover {
+            background-color: #1877f2;
+            color: #fff;
+        }
+
+        /* Redes sociales */
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 20px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            opacity: 0.7;
+        }
+
+        /* Sección principal */
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .profile-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #1877f2;
+        }
+
+        .profile-header p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Información sobre mí */
+        #about-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        #about-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Proyectos */
+        #projects-title {
+            font-size: 22px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #1877f2;
+        }
+
+        .project p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .project a {
+            display: inline-block;
+            background-color: #1877f2;
+            color: #fff;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .project a:hover {
+            background-color: #145db0;
+        }
+
+        .project .tags {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #1877f2;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* WhatsApp flotante */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .whatsapp-button i {
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Responsividad */
+        @media screen and (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-header img {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+    <script>
+        function switchLanguage(lang) {
+            if (lang === 'en') {
+                document.getElementById("about-title").innerText = "About Me";
+                document.getElementById("about-text").innerText = "Hello, I'm Josué Rafael Hernández Chávez, a web developer with 2 years of experience in creating modern and responsive websites. I specialize in HTML, CSS, JavaScript, and frameworks such as WordPress, Shopify, Webflow, Squarespace, and more.";
+                document.getElementById("contact-info").innerHTML = "Contact: <a href='mailto:josuehernandez1722@gmail.com'>josuehernandez1722@gmail.com</a> | Tel: +52 332 835 1038";
+                document.getElementById("projects-title").innerText = "Projects";
+            } else {
+                document.getElementById("about-title").innerText = "Sobre Mí";
+                document.getElementById("about-text").innerText = "Hola, soy Josué Rafael Hernández Chávez, un desarrollador web con 2 años de experiencia en la creación de sitios web modernos y responsivos. Me especializo en HTML, CSS, JavaScript y frameworks como WordPress, Shopify, Webflow, Squarespace y más.";
+                document.getElementById("contact-info").innerHTML = "Contacto: <a href='mailto:josuehernandez1722@gmail.com'>josuehernandez1722@gmail.com</a> | Tel: +52 332 835 1038";
+                document.getElementById("projects-title").innerText = "Proyectos";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Portafolio de Josué Rafael Hernández Chávez</h1>
+        <div class="language-switch">
+            <button onclick="switchLanguage('es')">ES</button>
+            <button onclick="switchLanguage('en')">EN</button>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/tuperfil" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:josuehernandez1722@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="profile-header">
+            <img src="src/josue.jpeg" alt="Perfil de Josué">
+            <div>
+                <h2>Josué Rafael Hernández Chávez</h2>
+                <p>Desarrollador Web</p>
+            </div>
+        </div>
+        <h2 id="about-title">Sobre Mí</h2>
+        <p id="about-text">Hola, soy Josué Rafael Hernández Chávez, un desarrollador web con 2 años de experiencia en la creación de sitios web modernos y responsivos. Me especializo en HTML, CSS, JavaScript y frameworks como WordPress, Shopify, Webflow, Squarespace y más.</p>
+        <p id="contact-info">Contacto: <a href="mailto:josuehernandez1722@gmail.com">josuehernandez1722@gmail.com</a> | Tel: +52 332 835 1038</p>
+        
+        <h2 id="projects-title">Proyectos</h2>
+        <div class="projects-grid">
+            <div class="project">
+                <img src="src/laboral.png" alt="Proyecto 1">
+                <h3>Laboral Jobs</h3>
+                <p>Bolsa de trabajo de agricultura en canada.</p>
+                <a href="https://laboraljobs.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Personal</div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/lilgallo.png" alt="Proyecto 2">
+                <h3>Lil Gallo</h3>
+                <p>Ecommerce de playeras </p>
+                <a href="https://lilgallo.com.mx/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Personal</div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/villa-plata.png" alt="Proyecto 3">
+                <h3>Villa Plata</h3>
+                <p>Cuidado de adultos mayores.</p>
+                <a href="https://www.villaplata.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/waspmed.png" alt="Proyecto 3">
+                <h3>WaspMed</h3>
+                <p>Servicios Medicos</p>
+                <a href="https://waspmed.mx/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/coresuites.png" alt="Proyecto 3">
+                <h3>Core Suites</h3>
+                <p>Departamentos</p>
+                <a href="https://coresuites.mx/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/tecorsa.png" alt="Proyecto 3">
+                <h3>Tecorsa</h3>
+                <p>Servicios traslado por vehiculos.</p>
+                <a href="https://tecorsa.com.mx/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/australian.png" alt="Proyecto 3">
+                <h3>Australian Moss</h3>
+                <p>Ecommerce de croquetas</p>
+                <a href="https://www.australianmoss.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/ickargo.png" alt="Proyecto 3">
+                <h3>IcKargo</h3>
+                <p>Servicios de traslado areo y maritimo.</p>
+                <a href="https://ickargo.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/energy.png" alt="Proyecto 3">
+                <h3>Corey Energy </h3>
+                <p>Paneles solares.</p>
+                <a href="https://www.coreyenergy.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/radiologos.png" alt="Proyecto 3">
+                <h3>Radiologos Virtuales</h3>
+                <p>Servicios Médicos</p>
+                <a href="https://radiologosvirtuales.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/simona.png" alt="Proyecto 3">
+                <h3>Cafe Simona</h3>
+                <p>Cafe de especialidad</p>
+                <a href="https://www.simona.cafe/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/smart1.png" alt="Proyecto 3">
+                <h3>Smart1</h3>
+                <p>Servicios de radiologos</p>
+                <a href="https://smart1soluciones.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/bioelements.png" alt="Proyecto 3">
+                <h3>Bioelements</h3>
+                <p>Servicios médicos.</p>
+                <a href="https://bioelementservices.com.mx/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/mexia.png" alt="Proyecto 3">
+                <h3>Mexia Mezcal </h3>
+                <p>Ecommerce de mezcal.</p>
+                <a href="https://mexiamezcal.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+            <div class="project">
+                <img src="src/kapital.png" alt="Proyecto 3">
+                <h3>Corey Kapital</h3>
+                <p>Servicios financieros.</p>
+                <a href="https://coreykapital.com/" target="_blank">Ver sitio</a>
+                <div class="tags">
+                    <div class="tag">Punto Ambar </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/523328351038" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
